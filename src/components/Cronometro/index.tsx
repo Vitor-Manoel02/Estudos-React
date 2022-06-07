@@ -12,6 +12,15 @@ interface Props {
 export default function Cronometro({selecionado }: Props) {
   const [tempo, setTempo] = useState<number>();
 
+  function regressiva(contador: number = 0){
+    setTimeout(() => {
+      if(contador > 0){ 
+        setTempo(contador - 1);
+        return regressiva(contador - 1)
+      }
+    },1000)
+  }
+
   useEffect(() => {
     if(selecionado?.tempo){
       setTempo(tempoEmSegundos(selecionado?.tempo))
@@ -26,7 +35,7 @@ export default function Cronometro({selecionado }: Props) {
       <div className={style.relogioWrapper}>
         <Relogio tempo={tempo} />
       </div>
-      <Botao>
+      <Botao onClick={()=> regressiva(tempo)}>
         Começar!
       </Botao>
     </div>
