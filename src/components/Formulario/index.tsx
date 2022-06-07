@@ -14,7 +14,10 @@ class Formulario extends React.Component<{
     evento.preventDefault();
     this.props.setTarefas(tarefasAntigas => [...tarefasAntigas, {...this.state}])
     console.log('state: ', this.state);
-    
+    this.setState({
+      tempo: "00:00",
+      tarefa: ""
+    })
   }
   render() {
     return (
